@@ -1,0 +1,26 @@
+{
+  "paths": {
+    "links": "../Config/Links.json",
+    "char_translations": "../Config/Char_Translations.json",
+    "imdb_translations": "../Config/Imdb_Translations.json",
+    "link_translations": "../Config/Link_Translations.json",
+    "data": "../Data/",
+    "progress": "../tmp/progress(num).json",
+    "backup": "../tmp/backup.json",
+    "providers": "../Config/Providers.json",
+    "providers_images": "../Data/Providers/img/(name).png",
+    "series_file": "../Data/Series.json",
+    "series_data": "../Data/Series/(title)",
+    "series_image": "../Data/Series/(title)/img/",
+    "new_episodes": "../Data/New_Episodes.json"
+  },
+  "consts": {
+    "num_threads": 8,
+    "myseries_num_pages": "1133",
+    "parser": "html5lib"
+  },
+  "errors": {
+    "myseries_404": "Error 404 (Not Found)!"
+  }
+
+}

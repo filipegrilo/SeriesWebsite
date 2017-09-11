@@ -1,0 +1,13 @@
+{
+  "main": {
+    "root": "http://mywatchseries.to",
+    "series": "http://mywatchseries.to/series/",
+    "series_links": "http://mywatchseries.to/serie/",
+    "new_episodes": "http://mywatchseries.to/tvschedule",
+    "search": "http://mywatchseries.to/search/"
+  },
+  "imdb": {
+    "root": "http://www.imdb.com",
+    "search": "http://www.imdb.com/find?q=(name)&s=tt"
+  }
+}
