@@ -12,7 +12,8 @@
     "series_file": "../Data/Series.json",
     "series_data": "../Data/Series/(title)",
     "series_image": "../Data/Series/(title)/img/",
-    "new_episodes": "../Data/New_Episodes.json"
+    "new_episodes": "../Data/New_Episodes.json",
+    "series_to_scrap": "../Data/Series_To_Scrap.json"
   },
   "consts": {
     "num_threads": 8,

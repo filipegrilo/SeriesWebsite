@@ -224,7 +224,10 @@ def scrap_links(url, return_episode_info=False):
 def get_series_url(series_name):
     name_parsed = urllib.parse.quote(series_name, encoding="raw_unicode_escape")
     url = links["main"]["search"]+name_parsed
-    html = requests.get(url).text
+    try:
+        html = requests.get(url).text
+    except:
+        return get_series_url(series_name)
     soup = BeautifulSoup(html, config["consts"]["parser"])
 
     options = soup.find_all("div", "search-item-left")
@@ -457,7 +460,7 @@ def get_all_series_info(series, num_threads=1, verbose=True, cur_iteration=None,
 
     add_info_to_series()
 
-def scrap_series_and_seasons(series_url, thread_lock=None):
+def scrap_series_and_seasons(series_url, thread_lock=None, update=False):
     if series_url == None:
         return
     html = requests.get(series_url).text
@@ -469,7 +472,7 @@ def scrap_series_and_seasons(series_url, thread_lock=None):
         year = None
     description = (soup.find("div", "show-summary").p.find_all("strong")[-1]).next_sibling
     series_dict[name] = {"title": name, "year": year, "description": description}
-    get_series_seasons(name, verbose=True, update=False)
+    get_series_seasons(name, verbose=True, update=update)
     get_series_info(name, update=True)
     if thread_lock != None:
         thread_lock.acquire()
@@ -478,10 +481,10 @@ def scrap_series_and_seasons(series_url, thread_lock=None):
     if thread_lock != None:
         thread_lock.release()
 
-def scrap_series_from_name(series_name, thread_lock=None):
+def scrap_series_from_name(series_name, thread_lock=None, update=False):
     print("Downloading ("+series_name+")...")
     url = get_series_url(series_name)
-    scrap_series_and_seasons(url, thread_lock)
+    scrap_series_and_seasons(url, thread_lock, update)
 
 def scrap_series_from_episode_url(episode_url):
     html = requests.get(episode_url).text
@@ -578,6 +581,17 @@ def fix_series_json():
         if not file in series_dict:
             scrap_series_from_name(file)
 
+def scrap_series_from_file():
+    with open(config["paths"]["series_to_scrap"], "r") as fp:
+        series_to_scrap = json.load(fp)
+
+    for series in series_to_scrap["series"]:
+        scrap_series_from_name(series, update=True)
+
+    series_to_scrap["series"] = []
+
+    with open(config["paths"]["series_to_scrap"], "w") as fp:
+        json.dump(series_to_scrap,fp)
 
 
 num_threads = config["consts"]["num_threads"]
@@ -585,14 +599,15 @@ on = True
 
 if on:
     print("Fixing series with backup file...")
-    #Utils.fix_series()
+    Utils.fix_series()
     print("Loading progress...")
     progress = get_progress(num_threads)
     print("Loading progress...")
     providers = get_providers()
     print("Loading series...")
     series_dict = get_series()
-    fix_series_json()
+    print("Scrapping series from file...")
+    scrap_series_from_file()
     print("Downloading latest episodes...")
     get_new_episodes()
     print("Saving series backup...")
