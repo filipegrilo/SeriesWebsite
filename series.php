@@ -18,6 +18,9 @@
 </head>
 <body>
     <?php
+        echo '<form action="index.php">
+                <input type="submit" value="Home" />
+            </form>';
         generate_series_html($cur_series, $cur_series_info);
     ?>
 </body>
