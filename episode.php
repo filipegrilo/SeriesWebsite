@@ -4,6 +4,10 @@
     require_once("src/headers/providers.php");
     require_once("src/headers/episode.php");
     
+    $series_path = "Data/Series.json";
+    $series = load_json_file($series_path);
+    $followed_series = get_followed_series();
+    
     $query = get_url_params();
     $name = $query["series"];
     $season = $query["season"];
@@ -28,7 +32,10 @@
 <body>
     <?php
         echo '<input type="button" value="Back" onclick="window.location.href=\'series.php?name='.$name.'\'">';
-        echo '<input type="button" value="Follow" onclick="follow(\''.$name.'\')">';
+        if(in_array($series["title"], $followed_series))
+            echo '<input type="button" value="Unfollow" onclick="unfollow(\''.$series["title"].'\')">';
+        else
+            echo '<input type="button" value="Follow" onclick="follow(\''.$series["title"].'\')">';
         echo "<h1>".$name."</h1>";
         echo '<img src="'.get_series_img_path($name).'"/>';
         echo "<h2>Season ".$season.": Episode ".$episode."</h2>";
