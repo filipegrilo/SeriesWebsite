@@ -1,7 +1,8 @@
 <?php
     require_once("src/headers/utils.php");
     require_once("src/headers/series.php");
-
+    
+    require("src/headers/check_login.php");
     session_start();
     $query = get_url_params();
     $series_name = $query["name"];

@@ -1,4 +1,6 @@
 <?php
+    require("src/headers/check_login.php");
+
     require("src/headers/utils.php");
     require_once("src/headers/series.php");
     require_once("src/headers/providers.php");
@@ -29,11 +31,11 @@
 </head>
 <body>
     <?php
-        echo '<input type="button" value="Back" onclick="window.location.href=\'series.php?name='.$name.'\'">';
+        echo '<input type="button" value="Back" onclick="window.location.href=\'series.php?name='.addslashes($name).'\'">';
         if(in_array($name, $followed_series))
-            echo '<input type="button" value="Unfollow" onclick="unfollow(\''.$series["title"].'\')">';
+            echo '<input type="button" value="Unfollow" onclick="unfollow(\''.addslashes($name).'\')">';
         else
-            echo '<input type="button" value="Follow" onclick="follow(\''.$series["title"].'\')">';
+            echo '<input type="button" value="Follow" onclick="follow(\''.addslashes($name).'\')">';
         echo "<h1>".$name."</h1>";
         echo '<img src="'.get_series_img_path($name).'"/>';
         echo "<h2>Season ".$season.": Episode ".$episode."</h2>";

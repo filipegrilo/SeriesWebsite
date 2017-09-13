@@ -1,4 +1,5 @@
 <?php
+    require("src/headers/check_login.php");
     require_once("src/headers/settings.php");
     session_start();
     $providers = get_providers();

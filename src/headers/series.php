@@ -26,12 +26,15 @@
             echo '<input type="button" value="Follow" onclick="follow(\''.$series["title"].'\')">'; 
         echo "<h3>".$series["description"]."</h3>";
         echo '<img src="'.get_series_img_path($series["title"]).'"/>';
-        echo '<h3>Rating: '.$series["info"]["rating"].'/10</h3>';
-        echo '<h4>Genres:';
-        foreach($series["info"]["genres"] as $genre){
-            echo " ".$genre.",";
-        }
-        echo '</h4>';
+        
+	if(array_key_exists("info", $series)){
+	    echo '<h3>Rating: '.$series["info"]["rating"].'/10</h3>';
+            echo '<h4>Genres:';
+            foreach($series["info"]["genres"] as $genre){
+            	echo " ".$genre.",";
+            }
+            echo '</h4>';
+	}
 
         if($series_info != null){
             foreach($series_info["seasons"] as $season){

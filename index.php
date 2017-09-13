@@ -11,6 +11,9 @@
         echo '<form action="settings.php">
                 <input type="submit" value="Settings" />
             </form>';
+	echo '<form action="src/routes/logout.php">
+		<input type="submit" value="Logout" />
+	    </form>';
         echo '<br>Last Episode: '; 
         generate_last_episode_link();
         echo '<br>';

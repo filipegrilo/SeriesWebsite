@@ -27,7 +27,7 @@
 
         echo '<h2>New Episodes:</h2>';
         foreach($new_episodes["episodes"] as $episode){
-            echo '<a href=episode.php?series="'.$episode["series"].'&season='.$episode["season"].'&episode='.$episode["episode"].'">'.$episode["series"].': Season '.$episode["season"].': Episode '.$episode["episode"].'</a><br>';
+            echo '<a href="episode.php?series='.$episode["series"].'&season='.$episode["season"].'&episode='.$episode["episode"].'">'.$episode["series"].': Season '.$episode["season"].': Episode '.$episode["episode"].'</a><br>';
         }
     }
 

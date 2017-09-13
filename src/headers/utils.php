@@ -1,5 +1,23 @@
 <?php
-    $conn = null;
+    class Database{
+	private static $db;
+	private $connection;
+
+	private function __construct(){
+	    $this->connection = new PDO('mysql:dbname=SeriesManager;host=localhost', 'root', 'toor');
+ 	}
+	
+	function __destruct(){
+	    $this->connection = null;
+	}
+
+	public static function getConnection(){
+	    if(self::$db == null){
+		self::$db = new Database();
+	    }
+	    return self::$db->connection;
+	}
+    }
 
     function load_json_file($url){
         $myfile = fopen($url, "r");
@@ -16,8 +34,7 @@
     }
 
     function get_db_connection(){
-        if($conn == null) $conn = new PDO('mysql:dbname=SeriesManager;host=localhost', 'root', 'toor');
-        return $conn;
+        return Database::getConnection();
     }
 
     function get_followed_series(){
