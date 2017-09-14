@@ -100,7 +100,7 @@ def get_series(update=False, num_threads=1, verbose=True):
                     year = "null"
                 description = series.find("div", "info").div.text
                 img_url = series.find("img")["src"]
-                Utils.download_image(img_url, config["paths"]["series_data"].replace("(title)", title) + title + ".jpg")
+                Utils.download_image(img_url, config["paths"]["series_image"].replace("(title)", title) + title + ".jpg")
                 thread_lock.acquire()
                 series_dict[title] = {"title": title, "year": year, "description": description}
                 thread_lock.release()
@@ -466,6 +466,8 @@ def scrap_series_and_seasons(series_url, thread_lock=None, update=False):
     html = requests.get(series_url).text
     soup = BeautifulSoup(html, config["consts"]["parser"])
     name = soup.find("h1", "channel-title").a.span.text
+    img_url = soup.find("img", {"itemprop": "image"})["src"]
+    Utils.download_image(img_url, config["paths"]["series_image"].replace("(title)", name) + name + ".jpg")
     try:
         year = soup.find("span", {"itemprop": "startDate"}).a.text
     except:
@@ -595,17 +597,18 @@ def scrap_series_from_file():
 
 
 num_threads = config["consts"]["num_threads"]
-on = True
+on = config["consts"]["run"]
+
+print("Fixing series with backup file...")
+Utils.fix_series()
+print("Loading progress...")
+progress = get_progress(num_threads)
+print("Loading progress...")
+providers = get_providers()
+print("Loading series...")
+series_dict = get_series()
 
 if on:
-    print("Fixing series with backup file...")
-    Utils.fix_series()
-    print("Loading progress...")
-    progress = get_progress(num_threads)
-    print("Loading progress...")
-    providers = get_providers()
-    print("Loading series...")
-    series_dict = get_series()
     print("Scrapping series from file...")
     scrap_series_from_file()
     print("Downloading latest episodes...")
