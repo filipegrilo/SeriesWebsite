@@ -7,13 +7,12 @@
 
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="src/style.css">
     <script type="text/javascript" src="src/js/calls.js"></script>
+    <title>Series - Settings</title>
 </head>
 <body>
-    <?php echo '<form action="index.php">
-                <input type="submit" value="Home" />
-            </form>';
-    ?>
+    <?php require("header.php"); ?>
     <h1>Priority Providers:</h1>
     <?php generate_providers_table();?>
     <input type="button" onclick="save_priority_providers()" value="Save">

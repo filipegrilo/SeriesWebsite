@@ -7,13 +7,7 @@
     if(!isset($_SESSION)) session_start();
     
     function main($series){
-        echo 'Welcome '.$_SESSION["user"];
-        echo '<form action="settings.php">
-                <input type="submit" value="Settings" />
-            </form>';
-	echo '<form action="src/routes/logout.php">
-		<input type="submit" value="Logout" />
-	    </form>';
+        require("header.php");
         echo '<br>Last Episode: '; 
         generate_last_episode_link();
         echo '<br>';
@@ -26,7 +20,10 @@
 ?>
 
 <html>
-<head></head>
+<head>
+    <link rel="stylesheet" type="text/css" href="src/style.css">
+    <title>Series - Home</title>
+</head>
 <body>
     <?php
         if(!isset($_SESSION["user"])){

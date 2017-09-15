@@ -500,6 +500,7 @@ def get_new_episodes(num_threads=1, verbose=True):
     last_date = None
     new_episodes = {"last_update": datetime.now().strftime("%d-%m-%Y %H:%M:%S"), "episodes": []}
 
+    day_delta = config["consts"]["day_delta"]
     for day_soup in soup.find_all("div", "slide"):
         day_str = day_soup.find("ul", "tabs").li.a.div.text
 
@@ -507,7 +508,10 @@ def get_new_episodes(num_threads=1, verbose=True):
             date = last_date + timedelta(days=1)
         else:
             date = datetime.strptime(day_str[:-2], "%a, %b %d")
-
+            date = date.replace(year=(datetime.now() - timedelta(days=day_delta)).year)
+        day_delta -= 1
+        date_str = date.strftime("%d-%m-%Y")
+        day_episodes = []
         day_series = day_soup.find("ul", "listings").find_all("li")
         for series_soup in day_series:
             url = series_soup.find("a",{"target": "_blank"})["href"]
@@ -554,19 +558,20 @@ def get_new_episodes(num_threads=1, verbose=True):
             else:
                 series["seasons"][int(episode_info["season"])-1]["episodes"][int(episode_info["episode_num"])-1] = d
 
-            new_episodes["episodes"].append({"series": original_name, "season": episode_info["season"], "episode": episode_info["episode_num"]})
+            day_episodes.append({"series": original_name, "season": episode_info["season"], "episode": episode_info["episode_num"]})
 
             try:
                 with open(path, "w") as fp:
                     json.dump(series, fp)
             except:
-                print("Error saving!")
+                print("Error saving series!")
                 continue
-
+        new_episodes["episodes"].append({"date": date_str, "day_episodes": day_episodes})
         last_date = date
 
         if day_str == "Today": break
 
+    new_episodes["episodes"] = list(reversed(new_episodes["episodes"]))
     print("Saving new episodes...")
     with open(config["paths"]["new_episodes"], "w") as fp:
         json.dump(new_episodes, fp)

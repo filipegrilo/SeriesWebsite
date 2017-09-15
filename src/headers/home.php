@@ -15,9 +15,11 @@
         $new_episodes = load_json_file("Data/New_Episodes.json");
         
         echo '<h2>New Followed Series Episodes:</h2>';
-        foreach($new_episodes["episodes"] as $episode){
-            if(in_array($episode["series"], $followed_series)){
-                echo '<a href="episode.php?series='.$episode["series"].'&season='.$episode["season"].'&episode='.$episode["episode"].'">'.$episode["series"].': Season '.$episode["season"].': Episode '.$episode["episode"].'</a><br>';
+        foreach($new_episodes["episodes"] as $day){
+            foreach($day["day_episodes"] as $episode){
+                if(in_array($episode["series"], $followed_series)){
+                    echo '<a href="episode.php?series='.$episode["series"].'&season='.$episode["season"].'&episode='.$episode["episode"].'">'.$episode["series"].': Season '.$episode["season"].': Episode '.$episode["episode"].'</a><br>';
+                }
             }
         }
     }
@@ -26,8 +28,11 @@
         $new_episodes = load_json_file("Data/New_Episodes.json");
 
         echo '<h2>New Episodes:</h2>';
-        foreach($new_episodes["episodes"] as $episode){
-            echo '<a href="episode.php?series='.$episode["series"].'&season='.$episode["season"].'&episode='.$episode["episode"].'">'.$episode["series"].': Season '.$episode["season"].': Episode '.$episode["episode"].'</a><br>';
+        foreach($new_episodes["episodes"] as $day){
+            echo '<h3>'.$day["date"].':</h3>';
+            foreach($day["day_episodes"] as $episode){
+                echo '<a href="episode.php?series='.$episode["series"].'&season='.$episode["season"].'&episode='.$episode["episode"].'">'.$episode["series"].': Season '.$episode["season"].': Episode '.$episode["episode"].'</a><br>';
+            }
         }
     }
 

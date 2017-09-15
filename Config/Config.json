@@ -17,6 +17,7 @@
   },
   "consts": {
     "run": true,
+    "day_delta": 5,
     "num_threads": 8,
     "myseries_num_pages": "1133",
     "parser": "html5lib"

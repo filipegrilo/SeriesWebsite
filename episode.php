@@ -27,23 +27,28 @@
 
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="src/style.css">
     <script type="text/javascript" src="src/js/calls.js"></script>
+    <title>Series - <?php echo $name; ?> - Season <?php echo $season; ?> - Episode <?php echo $episode; ?> (<?php echo $episode_info["name"]; ?>)</title>
 </head>
 <body>
+    <?php require("header.php"); ?>
+    <input type="button" value="Back" onclick="window.location.href='series.php?name=<?php echo addslashes($name); ?>'">
     <?php
-        echo '<input type="button" value="Back" onclick="window.location.href=\'series.php?name='.addslashes($name).'\'">';
         if(in_array($name, $followed_series))
             echo '<input type="button" value="Unfollow" onclick="unfollow(\''.addslashes($name).'\')">';
         else
             echo '<input type="button" value="Follow" onclick="follow(\''.addslashes($name).'\')">';
-        echo "<h1>".$name."</h1>";
-        echo '<img src="'.get_series_img_path($name).'"/>';
-        echo "<h2>Season ".$season.": Episode ".$episode."</h2>";
-        echo "<h3>".$episode_info["name"]."</h3>";
-        echo $prev_episode_btn;
-        echo $next_episode_btn;
-        echo "<ul>";
-        
+    ?>
+    <h1><?php echo $name; ?></h1>
+    <img src="<?php echo get_series_img_path($name); ?>"/>
+    <h2>Season <?php echo $season; ?>: Episode <?php echo $episode; ?></h2>
+    <h3><?php echo $episode_info["name"]; ?></h3> 
+    <?php   echo $prev_episode_btn;
+            echo $next_episode_btn;
+    ?>
+    <ul>
+        <?php    
         foreach($ordered_links as $link_info){
             $img_path = str_replace(" ","",$providers[$link_info["provider"]["name"]]["img_path"]);
 
@@ -54,7 +59,9 @@
             echo "</a>";
             echo "</li>";
         }
-        echo "</ul>";
+        ?>
+    </ul>
+    <?php
         echo $prev_episode_btn;
         echo $next_episode_btn;
     ?>
