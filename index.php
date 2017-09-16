@@ -8,7 +8,7 @@
     
     function main($series){
         require("header.php");
-        echo '<br>Last Episode: '; 
+        echo '<br>'; 
         generate_last_episode_link();
         echo '<br>';
         generate_new_followed_series_episodes_links();

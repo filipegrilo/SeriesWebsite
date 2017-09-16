@@ -33,13 +33,15 @@
 </head>
 <body>
     <?php require("header.php"); ?>
-    <input type="button" value="Back" onclick="window.location.href='series.php?name=<?php echo addslashes($name); ?>'">
-    <?php
-        if(in_array($name, $followed_series))
-            echo '<input type="button" value="Unfollow" onclick="unfollow(\''.addslashes($name).'\')">';
-        else
-            echo '<input type="button" value="Follow" onclick="follow(\''.addslashes($name).'\')">';
-    ?>
+    <div>
+        <input type="button" value="Back" onclick="window.location.href='series.php?name=<?php echo addslashes($name); ?>'">
+        <?php
+            if(in_array($name, $followed_series))
+                echo '<input type="button" value="Unfollow" onclick="unfollow(\''.addslashes($name).'\')">';
+            else
+                echo '<input type="button" value="Follow" onclick="follow(\''.addslashes($name).'\')">';
+        ?>
+    </div>
     <h1><?php echo $name; ?></h1>
     <img src="<?php echo get_series_img_path($name); ?>"/>
     <h2>Season <?php echo $season; ?>: Episode <?php echo $episode; ?></h2>

@@ -6,7 +6,8 @@
 
         echo '<h2>Followed Series:</h2>';
         foreach($followed_series as $series){
-            echo '<a href="series.php?name='.$series.'">'.$series.'</a><br>';
+            if($series == "") continue;
+            echo '<a href="series.php?name='.$series.'"><div class="episode-link"><img class="series-img" src="'.get_series_img_path($series).'"><p>'.$series.'</p></div></a><br>';
         }
     }
 
@@ -15,25 +16,33 @@
         $new_episodes = load_json_file("Data/New_Episodes.json");
         
         echo '<h2>New Followed Series Episodes:</h2>';
+        echo '<div class="episodes-display">';
+        echo '<div class="episodes-display-links">';
         foreach($new_episodes["episodes"] as $day){
             foreach($day["day_episodes"] as $episode){
                 if(in_array($episode["series"], $followed_series)){
-                    echo '<a href="episode.php?series='.$episode["series"].'&season='.$episode["season"].'&episode='.$episode["episode"].'">'.$episode["series"].': Season '.$episode["season"].': Episode '.$episode["episode"].'</a><br>';
+                    generate_episode_link($episode["series"], $episode["season"], $episode["episode"]);
                 }
             }
         }
+        echo '</div>';
+        echo '</div>';
     }
 
     function generate_new_episodes_links(){
         $new_episodes = load_json_file("Data/New_Episodes.json");
 
         echo '<h2>New Episodes:</h2>';
+        echo '<div class="episodes-display">';
         foreach($new_episodes["episodes"] as $day){
             echo '<h3>'.$day["date"].':</h3>';
+            echo '<div class="episodes-display-links">';
             foreach($day["day_episodes"] as $episode){
-                echo '<a href="episode.php?series='.$episode["series"].'&season='.$episode["season"].'&episode='.$episode["episode"].'">'.$episode["series"].': Season '.$episode["season"].': Episode '.$episode["episode"].'</a><br>';
+                generate_episode_link($episode["series"], $episode["season"], $episode["episode"]);
             }
+            echo '</div>';
         }
+        echo '</div>';
     }
 
     function get_last_episode(){
@@ -56,6 +65,17 @@
         $season = $query["season"];
         $episode = $query["episode"];
         
-        echo '<a href="'.$last_episode_url.'">'.$name.': Season '.$season.': Episode '.$episode.'</a>';
+        echo '<h2>Last Episode Watched:</h2>';
+        generate_episode_link($name, $season, $episode, $last_episode_url);
+    }
+
+    function generate_episode_link($series, $season, $episode, $href=""){
+        if($href == "") $href = 'episode.php?series='.$series.'&season='.$season.'&episode='.$episode;
+        echo '<a href="'.$href.'">';
+            echo '<div class="episode-link">';
+                echo '<img class="series-img" src="'.get_series_img_path($series).'">';
+                echo '<p>'.$series.': Season '.$season.': Episode '.$episode.'</p>';
+            echo '</div>';
+        echo '</a>';
     }
 ?>

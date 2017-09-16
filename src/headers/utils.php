@@ -1,22 +1,28 @@
 <?php
     class Database{
-	private static $db;
-	private $connection;
+        private static $db;
+        private $connection;
 
-	private function __construct(){
-	    $this->connection = new PDO('mysql:dbname=SeriesManager;host=localhost', 'root', 'toor');
- 	}
-	
-	function __destruct(){
-	    $this->connection = null;
-	}
+        private function __construct(){
+            $this->connection = new PDO('mysql:dbname=SeriesManager;host=localhost', 'root', 'toor');
+        }
+        
+        function __destruct(){
+            $this->connection = null;
+        }
 
-	public static function getConnection(){
-	    if(self::$db == null){
-		self::$db = new Database();
-	    }
-	    return self::$db->connection;
-	}
+        public static function getConnection(){
+            if(self::$db == null){
+            self::$db = new Database();
+            }
+            return self::$db->connection;
+        }
+    }
+
+    function get_series_img_path($series_name){
+        $path = 'Data/Series/'.$series_name.'/img/'.$series_name.'.jpg';
+        if(!file_exists($path)) return 'Data/Error/no_image.gif';
+        return $path;
     }
 
     function load_json_file($url){

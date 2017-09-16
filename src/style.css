@@ -2,10 +2,91 @@
     color: red;
 }
 
+.header-main{
+    width: 100%;
+    display: inline-block;
+}
+
 .header{
     display: inline-block;
 }
 
-.header form{
+.header-left{
+    float: left
+}
+
+.header-left form{
+    float: left;
+}
+
+.header-right{
     float: right;
+}
+
+.header-right form{
+    float: right;
+}
+
+.series-img{
+    width: 80px;
+    height: 120px;
+}
+
+.episode-link{
+    width: 160px;
+    height: 220px;
+    display: block;
+    position: relative;
+}
+
+.episode-link p{
+    width: 140px;
+    margin-left: 10px;
+    margin-right: 10px;
+    bottom: -10px;
+    text-align: center;
+    position: absolute;
+    z-index: 100;
+    color: red;
+    text-shadow: 
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    text-decoration: none;
+}
+
+.episode-link img{
+    display: block;
+    margin: auto;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.episodes-display{
+    width:100%;
+    display: inline-block;
+}
+
+.episodes-display h3{
+    background-color: 3366CC;
+    margin: 0;
+    padding: 10px 0px 10px 15px;
+}
+
+.episodes-display-links{
+    display: inline-block;
+    background-color: 3399FF;
+    margin-bottom: 10px; 
+    padding: 10px;
+}
+
+.episodes-display-links a{
+    float: left;
+    height: 220px;
+    border-style: solid;
+    margin: 2px;
+    padding-top: 10px;
+    border-color: 3366CC;
 }
