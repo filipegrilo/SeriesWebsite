@@ -5,10 +5,14 @@
         $followed_series = get_followed_series();
 
         echo '<h2>Followed Series:</h2>';
+        echo '<div class="episodes-display">';
+        echo '<div class="episodes-display-links">';
         foreach($followed_series as $series){
             if($series == "") continue;
-            echo '<a href="series.php?name='.$series.'"><div class="episode-link"><img class="series-img" src="'.get_series_img_path($series).'"><p>'.$series.'</p></div></a><br>';
+            echo '<a href="series.php?name='.$series.'"><div class="episode-link"><img class="series-img" src="'.get_series_img_path($series).'"><p>'.$series.'</p></div></a>';
         }
+        echo '</div>';
+        echo '</div>';
     }
 
     function generate_new_followed_series_episodes_links(){

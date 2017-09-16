@@ -5,10 +5,14 @@
 .header-main{
     width: 100%;
     display: inline-block;
+    background-color: #3366CC;
+    margin-bottom: 10px;
+    padding: 0 5 0 5;
 }
 
 .header{
     display: inline-block;
+    padding: 10px 0px 10px 0px;
 }
 
 .header-left{
@@ -17,6 +21,8 @@
 
 .header-left form{
     float: left;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .header-right{
@@ -25,6 +31,8 @@
 
 .header-right form{
     float: right;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .series-img{
@@ -67,17 +75,18 @@
 .episodes-display{
     width:100%;
     display: inline-block;
+    background-color: #3399FF;
 }
 
 .episodes-display h3{
-    background-color: 3366CC;
+    background-color: #3366CC;
     margin: 0;
     padding: 10px 0px 10px 15px;
 }
 
 .episodes-display-links{
     display: inline-block;
-    background-color: 3399FF;
+    background-color: #3399FF;
     margin-bottom: 10px; 
     padding: 10px;
 }
@@ -87,6 +96,5 @@
     height: 220px;
     border-style: solid;
     margin: 2px;
-    padding-top: 10px;
-    border-color: 3366CC;
+    border-color: #3366CC;
 }
