@@ -3,6 +3,9 @@
         <form action="index.php">
             <input type="submit" value="Home" />
         </form>
+        <form action="search.php">
+            <input type="submit" value="Series" />
+        </form>
     </div>
     <div class="header header-right">
          <form action="src/routes/logout.php">

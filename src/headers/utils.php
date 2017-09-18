@@ -12,10 +12,28 @@
         }
 
         public static function getConnection(){
-            if(self::$db == null){
-            self::$db = new Database();
-            }
+            if(self::$db == null) self::$db = new Database();
+            
             return self::$db->connection;
+        }
+    }
+
+    class JsonData{
+        private static $data;
+        private $series;
+
+        private function __construct(){
+            $this->series = load_json_file("Data/Series.json");
+        }
+
+        function __destruct(){
+            $this->series = null;
+        }
+
+        public static function get_all_series(){
+            if(self::$data == null) self::$data = new JsonData();
+            
+            return self::$data->series;
         }
     }
 
