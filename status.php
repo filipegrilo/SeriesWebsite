@@ -9,7 +9,7 @@
 </head>
 <?php session_start();
 if($_SESSION["permissions"] == "ADMIN"){
-    exec("python3 py_info.py", $output);
+    exec("cd Controll && python3 py_info.py", $output);
     foreach($output as $line){
 	echo $line."<br>";
     }
