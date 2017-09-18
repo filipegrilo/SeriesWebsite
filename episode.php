@@ -44,7 +44,7 @@
     </div>
     <h1><?php echo $name; ?></h1>
     <img src="<?php echo get_series_img_path($name); ?>"/>
-    <h2>Season <?php echo $season; ?>: Episode <?php echo $episode; ?></h2>
+    <h2>Season <?php echo $season; ?>: Episode <?php echo $episode; ?> (<?php echo $episode_info["date"]; ?>)</h2>
     <h3><?php echo $episode_info["name"]; ?></h3> 
     <?php   echo $prev_episode_btn;
             echo $next_episode_btn;
