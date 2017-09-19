@@ -12,11 +12,12 @@ function get_series_with_pages($series, $page_num, $series_per_page){
     $start_index = $page_num * $series_per_page;
     $end_index = $page_num * $series_per_page + $series_per_page;
 
-    
+    $result = "";
     for($i=$start_index; $i < $end_index && $i < $length; $i++){
         $s = $series[$keys[$i]];
-        echo '<a href="series.php?name='.$s["title"].'"><div class="episode-link"><img class="series-img" src="'.get_series_img_path($s["title"]).'"><p>'.$s["title"].'</p></div></a>';
-    }    
+        $result .= '<a href="series.php?name='.$s["title"].'"><div class="episode-link"><img class="series-img" src="'.get_series_img_path($s["title"]).'"><p>'.$s["title"].'</p></div></a>';
+    }   
+    return $result; 
 }
 
 function generate_prev_and_next_buttons($s, $page, $num_pages){

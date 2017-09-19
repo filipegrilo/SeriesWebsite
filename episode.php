@@ -33,39 +33,53 @@
 </head>
 <body>
     <?php require("header.php"); ?>
-    <div>
-        <input type="button" value="Back" onclick="window.location.href='series.php?name=<?php echo addslashes($name); ?>'">
-        <?php
-            if(in_array($name, $followed_series))
-                echo '<input type="button" value="Unfollow" onclick="unfollow(\''.addslashes($name).'\')">';
-            else
-                echo '<input type="button" value="Follow" onclick="follow(\''.addslashes($name).'\')">';
-        ?>
+    <div class="info">
+        <div class="info-title">
+            <h1><?php echo $name; ?></h1>
+            <input type="button" value="Back" onclick="window.location.href='series.php?name=<?php echo addslashes($name); ?>'">
+            <?php
+                if(in_array($name, $followed_series))
+                    echo '<input type="button" value="Unfollow" onclick="unfollow(\''.addslashes($name).'\')">';
+                else
+                    echo '<input type="button" value="Follow" onclick="follow(\''.addslashes($name).'\')">';
+            ?>
+        </div>
+        <div class="info-rest">
+            <img src="<?php echo get_series_img_path($name); ?>"/>
+            <div class="info-text">
+                <h2>Season <?php echo $season; ?>: Episode <?php echo $episode; ?> (<?php echo $episode_info["date"]; ?>)</h2>
+                <h3><?php echo $episode_info["name"]; ?></h3> 
+            </div>
+        </div>
     </div>
-    <h1><?php echo $name; ?></h1>
-    <img src="<?php echo get_series_img_path($name); ?>"/>
-    <h2>Season <?php echo $season; ?>: Episode <?php echo $episode; ?> (<?php echo $episode_info["date"]; ?>)</h2>
-    <h3><?php echo $episode_info["name"]; ?></h3> 
-    <?php   echo $prev_episode_btn;
-            echo $next_episode_btn;
-    ?>
-    <ul>
-        <?php    
-        foreach($ordered_links as $link_info){
-            $img_path = str_replace(" ","",$providers[$link_info["provider"]["name"]]["img_path"]);
+    <div class="search-footer">
+        <div class="search-footer-buttons">
+            <?php   echo $prev_episode_btn;
+                echo $next_episode_btn;
+            ?>
+        </div>
+    </div>
+    <div class="episode-links">
+        <ul>
+            <?php    
+            foreach($ordered_links as $link_info){
+                $img_path = str_replace(" ","",$providers[$link_info["provider"]["name"]]["img_path"]);
 
-            echo "<li>";
-            echo '<a target="_blank" href="'.$link_info["link"].'">';
-            echo '<img src="'.$img_path.'"/>';
-            echo $link_info["provider"]["name"];
-            echo "</a>";
-            echo "</li>";
-        }
-        ?>
-    </ul>
-    <?php
-        echo $prev_episode_btn;
-        echo $next_episode_btn;
-    ?>
+                echo '<li style="list-style-image: url(\''.$img_path.'\')">';
+                echo '<a target="_blank" href="'.$link_info["link"].'">';
+                echo $link_info["provider"]["name"];
+                echo "</a>";
+                echo "</li>";
+            }
+            ?>
+        </ul>
+    </div>
+    <div class="search-footer">
+        <div class="search-footer-buttons">
+            <?php   echo $prev_episode_btn;
+                echo $next_episode_btn;
+            ?>
+        </div>
+    </div>
 </body>
 </html>

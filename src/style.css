@@ -1,3 +1,47 @@
+body{
+    background-color: #318CC1;
+}
+
+h2{
+    color: #F7C331;
+    background-color: #1D2731; 
+    margin: 0;
+    padding: 10px 0px 10px 15px;
+}
+
+table th{
+    color: #ECA600;
+    font-size: 25px;
+}
+
+table a{
+    color: #D9B310;
+    font-size: 20px;
+}
+
+table a:visited{
+    color: #9f3369;
+}
+
+.table-background{ 
+    padding: 5px;
+    margin-bottom: 10px; 
+}
+
+.table-header-background{
+    background-color: rebeccapurple;
+}
+
+.series-table{
+    display: inline-block;
+    margin: 0 5 5 5;
+}
+
+.seasons{
+    background-color: #0B3C5D; 
+    text-align: center;
+}
+
 .error{
     color: red;
 }
@@ -5,14 +49,21 @@
 .header-main{
     width: 100%;
     display: inline-block;
-    background-color: #3366CC;
+    background-color: #1D2731;
     margin-bottom: 10px;
     padding: 0 5 0 5;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .header{
     display: inline-block;
     padding: 10px 0px 10px 0px;
+}
+
+.header input{
+    margin: 0 5 0 5; 
 }
 
 .header-left{
@@ -55,12 +106,12 @@
     text-align: center;
     position: absolute;
     z-index: 100;
-    color: red;
+    color: #D9B310;
     text-shadow: 
-        -1px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px 1px 0 #000,
-        1px 1px 0 #000;
+        -1px -1px 0 #1D2731,
+        1px -1px 0 #1D2731,
+        -1px 1px 0 #1D2731,
+        1px 1px 0 #1D2731;
     text-decoration: none;
 }
 
@@ -75,26 +126,151 @@
 .episodes-display{
     width:100%;
     display: inline-block;
-    background-color: #3399FF;
 }
 
 .episodes-display h3{
-    background-color: #3366CC;
+    background-color: #0B3C5D;
+    color: #D9B310;
     margin: 0;
     padding: 10px 0px 10px 15px;
 }
 
 .episodes-display-links{
     display: inline-block;
-    background-color: #3399FF;
     margin-bottom: 10px; 
     padding: 10px;
+    text-align: left;
 }
 
 .episodes-display-links a{
-    float: left;
+    display: inline-block;
     height: 220px;
     border-style: solid;
     margin: 2px;
-    border-color: #3366CC;
+    border-color: #0B3C5D;
+}
+
+.search-h2{
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 80px;
+    display: table;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.search-h2 p {
+    width:180px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.search-h2 form{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.search-footer{
+    display: inline-block;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #1D2731;
+}
+
+.search-footer:before{
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.search-footer p{
+    display: inline-block;
+    vertical-align: middle;
+    color: #D9B310;
+}
+
+.search-footer-buttons{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0 5;
+    padding: 5 0 5 0;
+}
+
+.search-footer-buttons input{
+    margin: 0 5 0 5;
+}
+
+.info{
+    color: #F7C331;
+    margin-bottom: 10px;
+    background-color: #0B3C5D;
+    padding: 0 5 10 5;
+}
+
+.info h2{
+    color: inherit;
+    background-color: inherit;
+    padding: inherit;
+}
+
+.info-title{
+    display: inline-block;
+    background: #1D2731;
+    width: 100%;
+    margin: 5 0 5 0; 
+}
+
+.info-title h1{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.info-title input{
+    margin-left: 10px; 
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.info-rest{
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: table;
+}
+
+.info-rest img{
+    display: table-cell;
+    margin-right: 10px;
+}
+
+.info-text{
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.info-text h4{
+    margin: 0;
+}
+
+.episode-links{
+    background-color: #0B3C5D;
+    padding: 10px;
+    font-size: 20px; 
+}
+
+.episode-links a{
+    color: #D9B310;
+    font-size: 20px;
+}
+
+.episode-links a:visited{
+    color: #9f3369;
 }

@@ -7,12 +7,12 @@
 
         if($episode+1 > $num_episodes){
             if($season+1 <= $num_seasons){
-                return '<input type="button" value="Next Episode" onclick="window.location.href=\'?series='.$name.'&season='.($season+1).'&episode='.(1).'\'">';
+                return '<input type="button" value="Next Episode" onclick="window.location.href=\'?series='.addslashes($name).'&season='.($season+1).'&episode='.(1).'\'">';
             }else{
                 return '';
             }
         }else{
-            return '<input type="button" value="Next Episode" onclick="window.location.href=\'?series='.$name.'&season='.$season.'&episode='.($episode+1).'\'">';
+            return '<input type="button" value="Next Episode" onclick="window.location.href=\'?series='.addslashes($name).'&season='.$season.'&episode='.($episode+1).'\'">';
         }
     }
 
@@ -22,12 +22,12 @@
         if($episode-1 <= 0){
             if($season-1 > 0){
                 $num_episodes = count($seasons[$season-2]["episodes"]);                
-                return '<input type="button" value="Previous Episode" onclick="window.location.href=\'?series='.$name.'&season='.($season-1).'&episode='.($num_episodes).'\'">';
+                return '<input type="button" value="Previous Episode" onclick="window.location.href=\'?series='.addslashes($name).'&season='.($season-1).'&episode='.($num_episodes).'\'">';
             }else{
                 return '';
             }
         }else{
-            return '<input type="button" value="Previous Episode" onclick="window.location.href=\'?series='.$name.'&season='.$season.'&episode='.($episode-1).'\'">';
+            return '<input type="button" value="Previous Episode" onclick="window.location.href=\'?series='.addslashes($name).'&season='.$season.'&episode='.($episode-1).'\'">';
         }
     }
 

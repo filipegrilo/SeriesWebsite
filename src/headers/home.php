@@ -70,7 +70,11 @@
         $episode = $query["episode"];
         
         echo '<h2>Last Episode Watched:</h2>';
+        echo '<div class="episodes-display">';
+        echo '<div class="episodes-display-links">';
         generate_episode_link($name, $season, $episode, $last_episode_url);
+        echo '</div>';
+        echo '</div>';
     }
 
     function generate_episode_link($series, $season, $episode, $href=""){
