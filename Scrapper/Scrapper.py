@@ -516,6 +516,11 @@ def get_new_episodes(num_threads=1, verbose=True):
         for series_soup in day_series:
             url = series_soup.find("a",{"target": "_blank"})["href"]
             episode_info, episode_links = scrap_links(url, return_episode_info=True)
+
+            if day_str == "Today" and (datetime.strptime(episode_info["date"], "%Y-%m-%d") + timedelta(days=2)) < datetime.now():
+                print(episode_info["series_name"] + ": Episode still not live!")
+                continue
+
             if verbose:
                 print(episode_info["series_name"] + ": Season " + episode_info["season"] + " Episode " + episode_info["episode_num"])
             original_name = episode_info["series_name"]
