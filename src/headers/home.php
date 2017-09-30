@@ -4,8 +4,8 @@
     function generate_followed_series_links(){
         $followed_series = get_followed_series();
 
-        echo '<h2>Followed Series:</h2>';
-        echo '<div class="episodes-display">';
+        echo '<h2 id="fs" name="header">Followed Series:</h2>';
+        echo '<div name="content" class="episodes-display">';
         echo '<div class="episodes-display-links">';
         foreach($followed_series as $series){
             if($series == "") continue;
@@ -19,8 +19,8 @@
         $followed_series = get_followed_series();
         $new_episodes = load_json_file("Data/New_Episodes.json");
         
-        echo '<h2>New Followed Series Episodes:</h2>';
-        echo '<div class="episodes-display">';
+        echo '<h2 id="nfse" name="header">New Followed Series Episodes:</h2>';
+        echo '<div name="content" class="episodes-display">';
         echo '<div class="episodes-display-links">';
         foreach($new_episodes["episodes"] as $day){
             foreach($day["day_episodes"] as $episode){
@@ -36,11 +36,11 @@
     function generate_new_episodes_links(){
         $new_episodes = load_json_file("Data/New_Episodes.json");
 
-        echo '<h2>New Episodes:</h2>';
-        echo '<div class="episodes-display">';
+        echo '<h2 id="nep" name="header">New Episodes:</h2>';
+        echo '<div name="content" class="episodes-display">';
         foreach($new_episodes["episodes"] as $day){
-            echo '<h3>'.$day["date"].':</h3>';
-            echo '<div class="episodes-display-links">';
+            echo '<h3 id="'.$day["date"].'" name="header" h3>'.$day["date"].':</h3>';
+            echo '<div name="content" class="episodes-display-links">';
             foreach($day["day_episodes"] as $episode){
                 generate_episode_link($episode["series"], $episode["season"], $episode["episode"]);
             }
@@ -69,8 +69,8 @@
         $season = $query["season"];
         $episode = $query["episode"];
         
-        echo '<h2>Last Episode Watched:</h2>';
-        echo '<div class="episodes-display">';
+        echo '<h2 id="lew" name="header">Last Episode Watched:</h2>';
+        echo '<div name="content" class="episodes-display">';
         echo '<div class="episodes-display-links">';
         generate_episode_link($name, $season, $episode, $last_episode_url);
         echo '</div>';

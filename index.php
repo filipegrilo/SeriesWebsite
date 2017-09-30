@@ -22,9 +22,10 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="src/style.css">
+    <script type="text/javascript" src="src/js/home.js"></script>
     <title>Series - Home</title>
 </head>
-<body>
+<body onload="load()">
     <?php
         if(!isset($_SESSION["user"])){
             if(!isset($_POST["username"])){
