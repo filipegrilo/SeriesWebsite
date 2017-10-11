@@ -76,14 +76,4 @@
         echo '</div>';
         echo '</div>';
     }
-
-    function generate_episode_link($series, $season, $episode, $href=""){
-        if($href == "") $href = 'episode.php?series='.$series.'&season='.$season.'&episode='.$episode;
-        echo '<a href="'.$href.'">';
-            echo '<div class="episode-link">';
-                echo '<img class="series-img" src="'.get_series_img_path($series).'">';
-                echo '<p>'.$series.': Season '.$season.': Episode '.$episode.'</p>';
-            echo '</div>';
-        echo '</a>';
-    }
 ?>

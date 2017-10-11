@@ -6,6 +6,9 @@
         <form action="search.php">
             <input type="submit" value="Series" />
         </form>
+        <form action="history.php">
+            <input type="submit" value="History" />
+        </form>
     </div>
     <div class="header header-right">
          <form action="src/routes/logout.php">

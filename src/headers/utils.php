@@ -44,10 +44,16 @@
     }
 
     function load_json_file($url){
-        $myfile = fopen($url, "r");
-        $json = json_decode(fread($myfile,filesize($url)), true);
-        fclose($myfile); 
+        $fp = fopen($url, "r");
+        $json = json_decode(fread($fp,filesize($url)), true);
+        fclose($fp); 
         return $json;
+    }
+
+    function save_json_file($url, $json_content){
+        $fp = fopen($url, 'w');
+        fwrite($fp, json_encode($json_content));
+        fclose($fp);
     }
 
     function get_url_params(){
@@ -70,5 +76,15 @@
         $stmt->execute();
         $result = $stmt->fetch();
         return split(",",$result["followed_series"]);
+    }
+
+    function generate_episode_link($series, $season, $episode, $href=""){
+        if($href == "") $href = 'episode.php?series='.$series.'&season='.$season.'&episode='.$episode;
+        echo '<a href="'.$href.'">';
+            echo '<div class="episode-link">';
+                echo '<img class="series-img" src="'.get_series_img_path($series).'">';
+                echo '<p>'.$series.': Season '.$season.': Episode '.$episode.'</p>';
+            echo '</div>';
+        echo '</a>';
     }
 ?>

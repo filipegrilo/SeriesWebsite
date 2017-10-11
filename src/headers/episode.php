@@ -32,11 +32,27 @@
     }
 
     function update_last_episode($url){
+        update_user_log_file($url);
+
         $conn = get_db_connection();
         $stmt = $conn->prepare('UPDATE users SET last_episode=:last_episode WHERE id=:id');
         $stmt->bindParam('last_episode', $url);
         $stmt->bindParam('id', $_SESSION["id"]);
         $stmt->execute();
+    }
+
+    function update_user_log_file($url){
+        $path = "Data/User_Logs/".$_SESSION["id"].".json";
+
+        if(file_exists($path)) $log = load_json_file($path);
+        else $log = array("log" => []);
+
+        foreach($log["log"] as $l)
+            if($l == $url) return;
+        
+        array_push($log["log"], $url);
+
+        save_json_file($path, $log);
     }
 
     function get_priority_providers(){
