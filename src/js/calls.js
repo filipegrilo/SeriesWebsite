@@ -30,3 +30,22 @@ function save_priority_providers(){
 
     alert("Saved!");
 }
+
+function episode_watched(){
+    var url_parts = window.location.href.split("/");
+    var episode_url = url_parts[url_parts.length-1];
+
+    console.log(episode_url);
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "src/routes/watched_episode.php", true);
+    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhttp.send("url="+episode_url);
+
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            console.log(xhttp.responseText);
+        }
+    }
+    
+}

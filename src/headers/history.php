@@ -14,7 +14,7 @@ function generate_user_history(){
         $name = $query["series"];
         $season = $query["season"];
         $episode = $query["episode"];
-        generate_episode_link($name, $season, $episode, $last_episode_url);
+        generate_episode_link($name, $season, $episode, $l);
     }
     echo '</div>';
     echo '</div>';

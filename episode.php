@@ -14,7 +14,6 @@
     $episode = $query["episode"];
 
     if(!isset($_SESSION)) session_start();
-    update_last_episode('episode.php?series='.$name.'&season='.$season.'&episode='.$episode);
 
     $seasons = load_json_file(get_series_info_path($name))["seasons"];
     $episode_info = $seasons[$season-1]["episodes"][$episode-1];
@@ -66,7 +65,7 @@
                 $img_path = str_replace(" ","",$providers[$link_info["provider"]["name"]]["img_path"]);
 
                 echo '<li style="list-style-image: url(\''.$img_path.'\')">';
-                echo '<a target="_blank" href="'.$link_info["link"].'">';
+                echo '<a onclick="episode_watched()" target="_blank" href="'.$link_info["link"].'">';
                 echo $link_info["provider"]["name"];
                 echo "</a>";
                 echo "</li>";

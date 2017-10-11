@@ -18,7 +18,7 @@
             <input type="submit" value="Settings" />
         </form>
         <?php 
-            session_start();
+            if(!isset($_SESSION)) session_start();
             if($_SESSION["permissions"] == "ADMIN"){
                     echo '<form action="status.php" target="_blank">
                     <input type="submit" value="Status" />

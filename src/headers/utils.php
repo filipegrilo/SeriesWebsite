@@ -75,7 +75,7 @@
         $stmt->bindParam('id', $_SESSION["id"]);
         $stmt->execute();
         $result = $stmt->fetch();
-        return split(",",$result["followed_series"]);
+        return explode(",",$result["followed_series"]);
     }
 
     function generate_episode_link($series, $season, $episode, $href=""){

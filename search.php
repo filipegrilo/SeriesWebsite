@@ -33,7 +33,7 @@ if(isset($_GET["s"])){
     <h2>Results:</h2>
     <div class="search-footer">
         <div class="search-footer-buttons">
-            <?php generate_prev_and_next_buttons($_GET["s"], $start_page, $num_pages); ?>
+            <?php if(isset($_GET["s"])) generate_prev_and_next_buttons($_GET["s"], $start_page, $num_pages); ?>
         </div>
         <p>Page: <?php echo $start_page+1; ?>/<?php echo $num_pages; ?></p>
     </div>
@@ -44,7 +44,7 @@ if(isset($_GET["s"])){
     </div>
     <div class="search-footer">
         <div class="search-footer-buttons">
-            <?php generate_prev_and_next_buttons($_GET["s"], $start_page, $num_pages); ?>
+            <?php if(isset($_GET["s"])) generate_prev_and_next_buttons($_GET["s"], $start_page, $num_pages); ?>
         </div>
         <p>Page: <?php echo $start_page+1; ?>/<?php echo $num_pages; ?></p>
     </div>
