@@ -99,14 +99,15 @@ table a:visited{
 }
 
 .episode-link p{
-    width: 140px;
-    margin-left: 10px;
-    margin-right: 10px;
+    width: 100%;
     bottom: -10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     text-align: center;
     position: absolute;
     z-index: 100;
     color: #D9B310;
+    background-color: rgba(29, 39, 49, 0.9);
     text-shadow: 
         -1px -1px 0 #1D2731,
         1px -1px 0 #1D2731,
