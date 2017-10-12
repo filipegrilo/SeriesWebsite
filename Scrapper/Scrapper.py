@@ -552,16 +552,17 @@ def get_new_episodes(num_threads=1, verbose=True):
 
             try:
                 series["seasons"][int(episode_info["season"]) - 1]["episodes"]
+                if len(series["seasons"][int(episode_info["season"]) - 1]["episodes"]) < int(
+                        episode_info["episode_num"]):
+                    series["seasons"][int(episode_info["season"]) - 1]["episodes"].append(d)
+                else:
+                    series["seasons"][int(episode_info["season"]) - 1]["episodes"][
+                        int(episode_info["episode_num"]) - 1] = d
             except:
                 print("Series badly downloaded("+original_name+"): downloading again")
                 get_series_seasons(original_name, update=True, verbose=True)
                 with open(path, "r") as fp:
                     series = json.load(fp)
-
-            if len(series["seasons"][int(episode_info["season"])-1]["episodes"]) < int(episode_info["episode_num"]):
-                series["seasons"][int(episode_info["season"])-1]["episodes"].append(d)
-            else:
-                series["seasons"][int(episode_info["season"])-1]["episodes"][int(episode_info["episode_num"])-1] = d
 
             day_episodes.append({"series": original_name, "season": episode_info["season"], "episode": episode_info["episode_num"]})
 
